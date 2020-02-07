@@ -1,9 +1,15 @@
 <template>
-  <div>Feed</div>
+  <div class="feed-container">
+    <post-list />
+  </div>
 </template>
 
 <script>
-export default {
+import PostList from './components/PostList.vue';
 
+export default {
+  components: {
+    PostList,
+  },
 };
 </script>

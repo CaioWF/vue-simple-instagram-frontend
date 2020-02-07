@@ -2,10 +2,10 @@
   <header id="main-header">
     <div class="header-content">
       <router-link to="/">
-        <img src="../assets/logo.svg" alt="InstaRocket">
+        <img src="@/assets/logo.svg" alt="InstaRocket">
       </router-link>
       <router-link to="/new">
-        <img src="../assets/camera.svg" alt="EnviarPublicação">
+        <img src="@/assets/camera.svg" alt="EnviarPublicação">
       </router-link>
     </div>
   </header>

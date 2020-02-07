@@ -1,18 +1,29 @@
 <template>
   <section id="post-list">
     <div class="posts-container">
-      <post-item />
-      <post-item />
+      <post-item v-for="post in posts" :key="post._id" :post="post"/>
     </div>
   </section>
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
 import PostItem from './PostItem.vue';
+
+const { mapState, mapActions } = createNamespacedHelpers('posts');
 
 export default {
   components: {
     PostItem,
+  },
+  computed: {
+    ...mapState(['posts']),
+  },
+  created() {
+    this.fetchAllPosts();
+  },
+  methods: {
+    ...mapActions(['fetchAllPosts']),
   },
 };
 </script>

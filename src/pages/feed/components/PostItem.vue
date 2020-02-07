@@ -2,13 +2,13 @@
   <div class="post-item">
     <header>
       <div class="user-info">
-        <span>Caio</span>
-        <span class="place">Quixadá</span>
+        <span>{{ post.author }}</span>
+        <span class="place">{{ post.place }}</span>
       </div>
       <img src="@/assets/more.svg" alt="Mais">
     </header>
 
-    <img src="http://localhost:3333/files/anime-minimalism-4k-4e-1366x768.jpg" alt="">
+    <img :src="`http://localhost:3333/files/${post.image}`" alt="">
 
     <footer>
       <div class="actions">
@@ -17,11 +17,11 @@
         <img src="@/assets/send.svg" alt="">
       </div>
 
-      <strong class="likes">900 curtidas</strong>
+      <strong class="likes">{{ post.likes }} curtidas</strong>
 
       <p>
-        Um post muito massa
-        <span>#vue #learning #top</span>
+        {{ post.description }}
+        <span>{{ post.hashtags }}</span>
       </p>
     </footer>
   </div>
@@ -29,7 +29,9 @@
 
 <script>
 export default {
-
+  props: {
+    post: Object,
+  },
 };
 </script>
 

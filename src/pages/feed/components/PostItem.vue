@@ -12,7 +12,9 @@
 
     <footer>
       <div class="actions">
-        <img src="@/assets/like.svg" alt="">
+        <button type="button" @click="like({ id: post._id })">
+          <img src="@/assets/like.svg" alt="">
+        </button>
         <img src="@/assets/comment.svg" alt="">
         <img src="@/assets/send.svg" alt="">
       </div>
@@ -28,9 +30,16 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapActions } = createNamespacedHelpers('posts');
+
 export default {
   props: {
     post: Object,
+  },
+  methods: {
+    ...mapActions(['like']),
   },
 };
 </script>
@@ -68,6 +77,12 @@ export default {
 
     .actions
       margin-bottom 10px
+
+      button
+        background transparent
+        border 0
+        cursor pointer
+        outline 0
 
       img
         height 20px

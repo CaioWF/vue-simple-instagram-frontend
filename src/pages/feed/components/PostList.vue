@@ -23,7 +23,15 @@ export default {
     this.fetchAllPosts();
   },
   methods: {
-    ...mapActions(['fetchAllPosts']),
+    ...mapActions(['fetchAllPosts', 'SOCKET_POST', 'SOCKET_LIKE']),
+  },
+  sockets: {
+    post(data) {
+      this.SOCKET_POST(data);
+    },
+    like(data) {
+      this.SOCKET_LIKE(data);
+    },
   },
 };
 </script>

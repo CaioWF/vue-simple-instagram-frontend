@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import api from '@/services/api';
 
 const state = {
@@ -46,6 +47,17 @@ const actions = {
   addImageOnPost({ commit }, payload) {
     commit('setImageOnPost', payload);
   },
+  like({ commit }, { id }) {
+    commit('setLike', id);
+  },
+  // eslint-disable-next-line no-shadow
+  SOCKET_POST({ commit }, payload) {
+    commit('SOCKET_POST', payload);
+  },
+  // eslint-disable-next-line no-shadow
+  SOCKET_LIKE({ commit }, payload) {
+    commit('SOCKET_LIKE', payload);
+  },
 };
 
 const mutations = {
@@ -64,6 +76,22 @@ const mutations = {
     state.postForm.place = '';
     state.postForm.description = '';
     state.postForm.hashtags = '';
+  },
+  async setLike(payload, id) {
+    try {
+      await api.post(`/posts/${id}/like`);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err.message);
+    }
+  },
+  // eslint-disable-next-line no-shadow
+  SOCKET_POST(state, payload) {
+    state.posts = [payload, ...state.posts];
+  },
+  // eslint-disable-next-line no-shadow
+  SOCKET_LIKE(state, payload) {
+    state.posts = state.posts.map(post => (post._id === payload._id ? payload : post));
   },
 };
 
